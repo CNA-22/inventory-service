@@ -12,7 +12,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.json({ info: 'Testi'})
+  res.json({ get_data: '/products'})
 })
 
 // med Pool
