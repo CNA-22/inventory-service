@@ -1,8 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const db = require('./products') // med Pool
+const db = require('./products')
 const app = express()
-const PORT = process.env.PORT || 3000 // mitä??
+const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 app.use(
@@ -14,8 +14,6 @@ app.use(
 app.get('/', (req, res) => {
   res.json({ get_data: '/products'})
 })
-
-// med Pool
 
 app.get('/products', db.getProducts)
 app.get('/products/:sku', db.getProductBySku)
