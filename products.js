@@ -24,7 +24,7 @@ const getProductBySku = (req, res) => {
         if (err) {
             throw err
         }
-        res.status(200).json(result.rows.length)
+        res.status(200).json(result.rows[0])
     })
 }
 
