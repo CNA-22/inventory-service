@@ -12,7 +12,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.json({ data_robert: '/products'})
+  res.json({ all_data: '/products', by_sku: '/products/:sku'})
 })
 
 app.get('/products', db.getProducts)
