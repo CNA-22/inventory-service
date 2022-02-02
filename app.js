@@ -12,7 +12,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.json({ get_data: '/products'})
+  res.json({ data: '/products'})
 })
 
 app.get('/products', db.getProducts)
