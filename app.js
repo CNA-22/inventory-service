@@ -18,8 +18,8 @@ app.get('/', (req, res) => {
 app.get('/products', db.getProducts)
 app.get('/products/:pid', db.getProductByPid)
 app.post('/products', db.createProduct)
-app.patch('/products/:pid', db.editProduct)
-app.patch('/products/:pid', db.reduceProduct)
+app.patch('/products/edit/:pid', db.editProduct)
+app.patch('/products/reduce/:pid', db.reduceProduct)
 app.delete('/products/:pid', db.deleteProduct)
 
 app.listen(PORT, () => {

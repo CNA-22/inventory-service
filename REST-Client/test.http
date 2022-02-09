@@ -1,4 +1,4 @@
-@baseUrl=http://localhost:3000
+@baseUrl=https://cna-inventory-service.herokuapp.com
 
 ### Get all products
 GET {{baseUrl}}/products
@@ -11,9 +11,7 @@ POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-    "namn": "rtx 100",
-    "pris": "200",
-    "sku": 56564982,
+    "pid": 1000020000123,
     "antal": 10
 }
 
@@ -35,4 +33,4 @@ Content-Type: application/json
 }
 
 ### Delete a product by its SKU
-DELETE {{baseUrl}}/products/56564982
+DELETE {{baseUrl}}/products/12345678
