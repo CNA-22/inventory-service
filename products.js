@@ -18,9 +18,9 @@ const getProducts = (req, res) => {
     })
 }
 
-const getProductBySku = (req, res) => {
-    const sku = parseInt(req.params.sku)
-    pool.query('SELECT * FROM lager WHERE sku = $1', [sku], (err, result) => {
+const getProductByPid = (req, res) => {
+    const pid = parseInt(req.params.pid)
+    pool.query('SELECT * FROM lager WHERE pid = $1', [pid], (err, result) => {
         if (err) {
             throw err
         }
@@ -29,41 +29,53 @@ const getProductBySku = (req, res) => {
 }
 
 const createProduct = (req, res) => {
-    const { namn, pris, sku, antal } = req.body
-    pool.query('INSERT INTO lager (namn, pris, sku, antal) VALUES ($1, $2, $3, $4)', [namn, pris, sku, antal], (err, result) => {
+    const { pid, antal } = req.body
+    pool.query('INSERT INTO lager (pid, antal) VALUES ($1, $2)', [pid, antal], (err, result) => {
         if (err) {
             throw err
         }
 
-        res.status(201).send(`Produkten med SKU: ${sku} har lagts till i lagret`)
+        res.status(201).send(`Produkten med PID: ${pid} har lagts till i lagret`)
     })
 }
 
 const editProduct = (req, res) => {
-    const sku = parseInt(req.params.sku)
-    const { antal, pris } = req.body
-    pool.query('UPDATE lager SET antal = antal - $1, pris = $2 WHERE sku = $3 RETURNING antal', [antal, pris, sku], (err, result) => {
+    const pid = parseInt(req.params.pid)
+    const antal = req.body
+    pool.query('UPDATE lager SET antal = antal - $1 WHERE pid = $2 RETURNING antal', [antal, pid], (err, result) => {
         if (err) {
             throw err
         }
-        res.status(200).send(`Mängden av produkten ${sku} har ändrats. Ny saldo: ` + Object.values(result.rows[0]))
+        res.status(200).send(`Mängden av produkten ${pid} har ändrats. Ny saldo: ` + Object.values(result.rows[0]))
+    })
+}
+
+const reduceProduct = (req, res) => {
+    const pid = parseInt(req.params.pid)
+    const antal = req.body
+    pool.query('UPDATE lager SET antal = antal - $1 WHERE pid = $2 RETURNING antal', [antal, pid], (err, result) => {
+        if (err) {
+            throw err
+        }
+        res.status(200).send(`Mängden av produkten ${pid} har ändrats. Ny saldo: ` + Object.values(result.rows[0]))
     })
 }
 
 const deleteProduct = (req, res) => {
-    const sku = parseInt(req.params.sku)
-    pool.query('DELETE FROM lager WHERE sku = $1', [sku], (err, result) => {
+    const pid = parseInt(req.params.pid)
+    pool.query('DELETE FROM lager WHERE pid = $1', [pid], (err, result) => {
         if (err) {
             throw err
         }
-        res.status(200).send(`Produkten med SKU: ${sku} raderad från lagret`)
+        res.status(200).send(`Produkten med PID: ${pid} raderad från lagret`)
     })
 }
 
 module.exports = {
     getProducts,
-    getProductBySku,
+    getProductByPid,
     createProduct,
     deleteProduct,
     editProduct,
+    reduceProduct,
 }
