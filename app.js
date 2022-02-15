@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000
 
 app.use(
   cors({
-    origin = "*",
+    origin = "https://cna-inventory-service.herokuapp.com/",
   })
 )
 app.use(bodyParser.json())
