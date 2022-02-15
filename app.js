@@ -2,14 +2,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./products')
 const app = express()
-const cors = require("cors")
+//const cors = require("cors")
 const PORT = process.env.PORT || 3000
-
+/*
 app.use(
   cors({
-    origin = "https://cna-inventory-service.herokuapp.com/",
+    origin = "*",
   })
-)
+)*/
+
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
