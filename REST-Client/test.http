@@ -1,27 +1,34 @@
-@baseUrl=https://cna-inventory-service.herokuapp.com
+@baseUrl=http://localhost:3000
 
 ### Get all products
 GET {{baseUrl}}/products
 
 ### Get product by SKU
-GET {{baseUrl}}/products/22345678
+GET {{baseUrl}}/products/1000020000124
 
 ### Add new product
 POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-    "pid": 1000020000123,
-    "antal": 10
+    "pid": 1000020000124,
+    "antal": "10"
 }
 
 ###
-PATCH {{baseUrl}}/products/56564982
+PATCH {{baseUrl}}/products/edit/1000020000124
 Content-Type: application/json
 
 {
-    "pris": "3000",
-    "antal": 10
+    "antal": 20
+}
+
+###
+PATCH {{baseUrl}}/products/reduce/1000020000124
+Content-Type: application/json
+
+{
+    "antal": 5
 }
 
 ###

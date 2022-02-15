@@ -19,7 +19,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.json({ all_data: '/products', by_sku: '/products/:pid'})
+  res.json({ all_data: '/products', by_pid: '/products/:pid'})
 })
 
 app.get('/products', db.getProducts)
