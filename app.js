@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000
 
 app.use(
   cors({
-    origin = "*"
+    origin = "*",
   })
 )
 app.use(bodyParser.json())
