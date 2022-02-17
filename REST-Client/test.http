@@ -1,21 +1,30 @@
+<<<<<<< HEAD
 //@baseUrl=https://cna-inventory-service.herokuapp.com
 @baseUrl=https://localhost:3000
 
 @token=eyJhbGciOiJIUzI1NiJ9.e30.a9ExFNrIqJyJ-L9Kx4q8eqC9YoBfJbm-hH78UxSXhGQ
 
+=======
+@baseUrl=http://localhost:3000
+>>>>>>> 025f4060cad35a7116effd41eca805ee43fe7dfc
 
 ### Get all products
 GET {{baseUrl}}/products
 Authorization: Bearer {{token}}
 
 ### Get product by SKU
+<<<<<<< HEAD
 GET {{baseUrl}}/products/55555555555
+=======
+GET {{baseUrl}}/products/1000020000124
+>>>>>>> 025f4060cad35a7116effd41eca805ee43fe7dfc
 
 ### Add new product
 POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "pid": 55555555555,
     "antal": 50
 }
@@ -27,6 +36,26 @@ Content-Type: application/json
 {
     "pris": "3000",
     "antal": 50
+=======
+    "pid": 1000020000124,
+    "antal": "10"
+}
+
+###
+PATCH {{baseUrl}}/products/edit/1000020000124
+Content-Type: application/json
+
+{
+    "antal": 20
+}
+
+###
+PATCH {{baseUrl}}/products/reduce/1000020000124
+Content-Type: application/json
+
+{
+    "antal": 5
+>>>>>>> 025f4060cad35a7116effd41eca805ee43fe7dfc
 }
 
 ###

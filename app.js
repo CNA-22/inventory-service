@@ -8,9 +8,10 @@ const authorization = require('./middleware/authorize')
 
 app.use(
   cors({
-    origin = "*",
+    origin: "*",
   })
 )
+
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
@@ -19,7 +20,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.json({ all_data: '/products', by_sku: '/products/:pid'})
+  res.json({ all_data: '/products', by_pid: '/products/:pid'})
 })
 
 app.get('/products',authorization, db.getProducts)

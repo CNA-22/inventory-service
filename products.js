@@ -20,7 +20,7 @@ const getProducts = (req, res) => {
 
 const getProductByPid = (req, res) => {
     const pid = parseInt(req.params.pid)
-    pool.query('SELECT * FROM lager WHERE pid = $1', [pid], (err, result) => {
+    pool.query('SELECT pid, antal FROM lager WHERE pid = $1', [pid], (err, result) => {
         if (err) {
             throw err
         }
@@ -32,6 +32,7 @@ const createProduct = (req, res) => {
     const { pid, antal } = req.body
     pool.query('INSERT INTO lager (pid, antal) VALUES ($1, $2)', [pid, antal], (err, result) => {
         if (err) {
+            
             throw err
         }
 
@@ -42,8 +43,9 @@ const createProduct = (req, res) => {
 const editProduct = (req, res) => {
     const pid = parseInt(req.params.pid)
     const antal = req.body
-    pool.query('UPDATE lager SET antal = antal - $1 WHERE pid = $2 RETURNING antal', [antal, pid], (err, result) => {
+    pool.query('UPDATE lager SET antal = $1 WHERE pid = $2 RETURNING antal', [antal.antal, pid], (err, result) => {
         if (err) {
+            
             throw err
         }
         res.status(200).send(`Mängden av produkten ${pid} har ändrats. Ny saldo: ` + Object.values(result.rows[0]))
@@ -53,7 +55,7 @@ const editProduct = (req, res) => {
 const reduceProduct = (req, res) => {
     const pid = parseInt(req.params.pid)
     const antal = req.body
-    pool.query('UPDATE lager SET antal = antal - $1 WHERE pid = $2 RETURNING antal', [antal, pid], (err, result) => {
+    pool.query('UPDATE lager SET antal = antal - $1 WHERE pid = $2 RETURNING antal', [antal.antal, pid], (err, result) => {
         if (err) {
             throw err
         }
