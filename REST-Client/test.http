@@ -1,32 +1,38 @@
-@baseUrl=https://cna-inventory-service.herokuapp.com
+//@baseUrl=https://cna-inventory-service.herokuapp.com
+@baseUrl=https://localhost:3000
+
+@token=eyJhbGciOiJIUzI1NiJ9.e30.a9ExFNrIqJyJ-L9Kx4q8eqC9YoBfJbm-hH78UxSXhGQ
+
 
 ### Get all products
 GET {{baseUrl}}/products
+Authorization: Bearer {{token}}
 
 ### Get product by SKU
-GET {{baseUrl}}/products/22345678
+GET {{baseUrl}}/products/55555555555
 
 ### Add new product
 POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-    "pid": 1000020000123,
-    "antal": 10
+    "pid": 55555555555,
+    "antal": 50
 }
 
 ###
-PATCH {{baseUrl}}/products/56564982
+PATCH {{baseUrl}}/products/55555555555
 Content-Type: application/json
 
 {
     "pris": "3000",
-    "antal": 10
+    "antal": 50
 }
 
 ###
 PUT {{baseUrl}}/products/56564982/remove
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "antal": 5
@@ -34,3 +40,5 @@ Content-Type: application/json
 
 ### Delete a product by its SKU
 DELETE {{baseUrl}}/products/12345678
+Content-Type: application/json
+Authorization: Bearer {{token}}

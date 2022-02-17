@@ -71,6 +71,8 @@ const deleteProduct = (req, res) => {
     })
 }
 
+
+
 module.exports = {
     getProducts,
     getProductByPid,
