@@ -1,0 +1,222 @@
+{
+   "openapi": "3.0.0",
+   "info": {
+         "title": "Inventory API",
+         "version": "1.0",
+         "description": "API for handling Scalperz inc inventory"
+   },
+   "servers": [
+      { "url": "https://cna-inventory-service.herokuapp.com/"}
+   ],
+"paths": {
+   "/products": {
+      "get": {
+         "description": "List all product PIDs and counts",
+         "responses": {
+            "200": {
+               "description": "OK",
+               "content": {
+                  "application/json": {
+                     "schema": null,
+                     "$ref": "#/components/schemas/Product"
+                  }
+               }
+            }
+         },
+         "security": [
+            {
+               "bearerAuth": []
+            }
+         ]
+      },
+      "post": {
+         "description": "Add a new product",
+         "requestBody": {
+            "content": {
+               "application/json": {
+                  "schema": {
+                     "$ref": "#/components/schemas/Product"
+                  }
+               }
+            }
+         },
+         "responses": {
+            "200": {
+               "description": "Product created!"
+            }
+         },
+         "security": [
+            {
+               "bearerAuth": []
+            }
+         ]
+      }
+   },
+   "/products/{pid}": {
+      "get": {
+         "description": "List product by its PID",
+         "parameters": [
+            {
+               "name": "pid",
+               "in": "path",
+               "required": true,
+               "schema": {
+                  "type": "integer"
+               }
+            }
+         ],
+         "responses": {
+            "200": {
+               "description": "OK",
+               "content": {
+                  "application/json": {
+                     "schema": null,
+                     "$ref": "#/components/schemas/Product"
+                  }
+               }
+            }
+         },
+         "security": [
+            {
+               "bearerAuth": []
+            }
+         ]
+      }
+   },
+   "/products/edit/{pid}": {
+      "patch": {
+         "description": "Edit product",
+         "parameters": [
+            {
+               "name": "pid",
+               "in": "path",
+               "type": "integer"
+            }
+         ],
+         "requestBody": {
+            "content": {
+               "application/json": {
+                  "schema": {
+                     "$ref": "#/components/schemas/Product"
+                  }
+               }
+            }
+         },
+         "responses": {
+            "200": {
+               "description": "OK",
+               "content": {
+                  "application/json": {
+                     "schema": null,
+                     "$ref": "#/components/schemas/Product"
+                  }
+               }
+            }
+         },
+         "security": [
+            {
+               "bearerAuth": []
+            }
+         ]
+      }
+   },
+   "/products/reduce/{pid}": {
+      "patch": {
+         "description": "Reduce product count",
+         "parameters": [
+            {
+               "name": "pid",
+               "in": "path",
+               "type": "integer"
+            }
+         ],
+         "requestBody": {
+            "content": {
+               "application/json": {
+                  "schema": {
+                     "type": "object",
+                     "properties": {
+                        "antal": {
+                           "type": "integer"
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "responses": {
+            "200": {
+               "description": "OK",
+               "content": {
+                  "application/json": {
+                     "schema": null,
+                     "$ref": "#/components/schemas/Product"
+                  }
+               }
+            }
+         },
+         "security": [
+            {
+               "bearerAuth": []
+            }
+         ]
+      }
+   },
+   "/products/delete/{pid}": {
+      "delete": {
+         "description": "Delete a product by its PID",
+         "parameters": [
+            {
+               "name": "pid",
+               "in": "path",
+               "type": "integer"
+            }
+         ],
+         "responses": {
+            "200": {
+               "description": "OK",
+               "content": {
+                  "application/json": {
+                     "schema": null,
+                     "$ref": "#/components/schemas/Product"
+                  }
+               }
+            }
+         },
+         "security": [
+            {
+               "bearerAuth": []
+            }
+         ]
+      }
+   }
+   },
+   "components": {
+      "schemas": {
+         "Product": {
+            "type": "object",
+            "properties": {
+               "pid": {
+                  "type": "integer",
+                  "description": "The product PID",
+                  "example": 1234567890123
+               },
+               "antal": {
+                  "type": "integer",
+                  "description": "Product count",
+                  "example": 100
+               }
+            }
+         }
+      },
+      "securitySchemes": {
+         "bearerAuth": {
+            "type": "http",
+            "description": "JWT token to authorize requests",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+         }
+      }
+   }
+
+}
