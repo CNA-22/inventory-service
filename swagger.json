@@ -32,10 +32,10 @@
             }
          ]
       },
-      "tags": [
+      "post": {
+         "tags": [
          "products"
       ],
-      "post": {
          "description": "Add a new product",
          "requestBody": {
             "content": {
