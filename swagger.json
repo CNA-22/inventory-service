@@ -11,6 +11,9 @@
 "paths": {
    "/products": {
       "get": {
+         "tags": [
+            "products"
+         ],
          "description": "List all product PIDs and counts",
          "responses": {
             "200": {
@@ -29,6 +32,9 @@
             }
          ]
       },
+      "tags": [
+         "products"
+      ],
       "post": {
          "description": "Add a new product",
          "requestBody": {
@@ -54,6 +60,9 @@
    },
    "/products/{pid}": {
       "get": {
+         "tags": [
+         "products"
+         ],
          "description": "List product by its PID",
          "parameters": [
             {
@@ -85,6 +94,9 @@
    },
    "/products/edit/{pid}": {
       "patch": {
+         "tags": [
+         "products"
+         ],
          "description": "Edit product",
          "parameters": [
             {
@@ -122,6 +134,9 @@
    },
    "/products/reduce/{pid}": {
       "patch": {
+         "tags": [
+         "products"
+         ],
          "description": "Reduce product count",
          "parameters": [
             {
@@ -164,6 +179,9 @@
    },
    "/products/delete/{pid}": {
       "delete": {
+         "tags": [
+         "products"
+         ],
          "description": "Delete a product by its PID",
          "parameters": [
             {
